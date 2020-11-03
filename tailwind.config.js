@@ -10,7 +10,15 @@ module.exports = {
     './components/**/*.js'
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'thyellow': '#FFCB19',
+        'inputGray': '#F6F6F6'
+      },
+      fontFamily: {
+        'sans': ['JTMarnie', 'Helvetica']
+      }
+    }
   },
   variants: {},
   plugins: [],

@@ -66,10 +66,10 @@ const Home = () => {
         <input placeholder="Buscar comida..." className="w-full" />
         <button className="bg-yellow-800 absolute right-0 top-0">filtros</button>
       </div>
-      <div className="col-span-12 lg:col-span-2 px-4 pr-0">
+      <div className="col-span-12 lg:col-span-3 px-4 pr-0">
         <SeccionesCarousel secciones={SECCIONES_DUMMY} />
       </div>
-      <div className="grid grid-cols-12 col-span-12 lg:col-span-10">
+      <div className="grid grid-cols-12 col-span-12 lg:col-span-9">
         <div className="col-span-12 lg:col-span-8 px-4 pr-0">
           <CombosCarousel title="Super Combos" combos={PRODUCTS_DUMMY} />
         </div>

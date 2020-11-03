@@ -1,3 +1,29 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@layer base {
+  @font-face {
+    font-family: 'JTMarnie';
+    src: url('/fonts/JTMarnie-Regular.eot');
+    src: url('/fonts/JTMarnie-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/JTMarnie-Regular.svg#JTMarnie-Regular') format('svg'),
+         url('/fonts/JTMarnie-Regular.ttf') format('truetype'),
+         url('/fonts/JTMarnie-Regular.woff') format('woff'),
+         url('/fonts/JTMarnie-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }  
+
+  @font-face {
+    font-family: 'JTMarnie';
+    src: url('/fonts/JTMarnie-Bold.eot');
+    src: url('/fonts/JTMarnie-Bold.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/JTMarnie-Bold.svg#JTMarnie-Bold') format('svg'),
+         url('/fonts/JTMarnie-Bold.ttf') format('truetype'),
+         url('/fonts/JTMarnie-Bold.woff') format('woff'),
+         url('/fonts/JTMarnie-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+  }
+}
