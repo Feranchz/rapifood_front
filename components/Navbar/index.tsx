@@ -1,64 +1,91 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import { RightNav } from './RightNav'
+import Link from 'next/link'
 import Image from 'next/image'
-import { BackButton } from './BackButton'
+import { ShoppingCart } from '../ShoppingCart'
+import { AuthModal } from '../Modals/AuthModal'
+import { useUser } from '../Utils/useUser'
 
 export const Navbar = () => {
-  const { pathname } = useRouter()
-  const [actualPage, setActualPage] = useState("")
-  const [open, setOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [showShoppingCart, setShowShoppingCart] = useState(false)
+  const [authModal, setAuthModal] = useState(false)
+  const { userHook, refetch } = useUser()
+  const user = userHook()
 
   useEffect(() => {
-    switch(pathname){
-      case "/":
-        setActualPage("Rapifoood")
-      break;
-      case "/pagar":
-        setActualPage("Pagar")
-      break;
-      case "/buscar/[[...filters]]":
-        setActualPage("Búsqueda")
-      break;
-      default:
-        setActualPage("")
+    if(user.activate == 1){
+      setIsLoggedIn(true);
     }
-  }, [pathname])
+  }, [user])
+
+  useEffect(() => {
+    refetch()
+  }, [])
+
+  const handleUserClick = () => {
+    if(isLoggedIn){
+
+    } else {
+      setAuthModal(true)
+    }
+  }
 
   return (
-    <nav className="fixed lg:static grid grid-cols-12 h-18 w-full bg-white z-50 py-2 box-content">
-      <RightNav open={open} closeMenu={() => setOpen(false)} />
-      <div className="h-18 mt-2 col-span-3 mx-auto lg:hidden">
-        {
-          pathname != "/" ?
-          <BackButton /> : null
+    <>
+      <div className="mx-auto max-w-8xl px-6">
+        <div className="flex justify-between align-center flex-row py-4 md:py-6 relative">
+          <div className="flex flex-1 items-center">
+            <div className="logo-container">
+              <Link href="/">
+                <Image src="/logo.png" layout="fill" />
+              </Link>
+            </div>
+            <nav className="space-x-4 ml-6 hidden lg:block">
+              <Link href="/buscar">
+                <a>Todos</a>
+              </Link>
+              <Link href="/favoritos">
+                <a>Favoritos</a>
+              </Link>
+            </nav>
+          </div>
+          <div className="flex-1 justify-center hidden lg:flex">
+            <div className="relative text-sm bg-accents-1 w-full transition-colors duration-150">
+              <input className="input-principal" placeholder="Buscar comida..." />
+            </div>
+          </div>
+          <div className="flex flex-1 justify-end space-x-8">
+            <nav>
+              <ul className="flex space-x-4">
+                <li className="relative" style={{width: 25, height: 25}} onClick={() => setShowShoppingCart(true)}>
+                  <Image src="/icons/shopping-bag-solid.svg" layout="fill" />
+                </li>
+                <li className="relative rounded-full overflow-hidden" style={{width: 25, height: 25}} onClick={handleUserClick}>
+                  <Image src="/test/lilycollins.jpg" layout="fill" />
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <ShoppingCart isOpen={showShoppingCart} close={() => setShowShoppingCart(false)} />
+      <AuthModal visible={authModal} close={() => setAuthModal(false)} />
+      <style jsx>{`
+        .logo-container {
+          position: relative;
+          width: 50px;
+          height: 30px;
         }
-      </div>
-      <div className="h-16 col-span-3 hidden lg:block text-center">
-        <img src="/logo.png" className="h-full py-3 inline-block" />
-        <h1 className="inline-block text-2xl ml-2">Rapifoood</h1>
-      </div>
-      <div className="h-16 col-span-6 relative lg:hidden">
-        <img src="/logo.png" className="opacity-25 h-full mx-auto py-3" />
-        <h1 className="text-2xl text-center w-full absolute top-0 pt-3 font-bold">{actualPage}</h1>
-      </div>
-      <div className="h-16 col-span-6 hidden lg:block box-content relative">
-        <input className="bg-inputGray h-12 my-2 px-6 rounded-lg w-5/6 focus:outline-none" placeholder="Buscar comida..." />
-      </div>
-      <div className="col-span-3 h-18">
-        <div className="lg:hidden w-12 h-12 mx-auto mt-2" onClick={() => setOpen(true)}>
-          <Image src="/test/lilycollins.jpg" width={400} height={400} className="rounded-lg shadow-lg" />
-        </div>
-        <div className="hidden lg:flex text-xl text-right items-center justify-center">
-          <div className="w-8 h-8">
-            <Image src="/test/lilycollins.jpg" unsized className="rounded-lg shadow-lg" />
-          </div>
-          <p className="mt-3 mx-4">Hola, <span className="font-bold">Usuario!</span></p>
-          <div className="h-4 w-4">
-            <img src="/icons/angle-down-solid.svg" />
-          </div>
-        </div>
-      </div>
-    </nav>
+
+        .input-principal {
+          background-color: #eee;
+          padding: 5px 10px 5px 25px;
+          width: 100%;
+          border-radius: 25px;
+          font-size: 1.25em;
+        }
+      `}</style>
+    </>
   )
 }

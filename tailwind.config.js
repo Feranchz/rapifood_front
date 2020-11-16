@@ -17,6 +17,13 @@ module.exports = {
       },
       fontFamily: {
         'sans': ['JTMarnie', 'Helvetica']
+      },
+      inset: {
+        '20': '20px',
+        '40': '40px'
+      },
+      height: {
+        '128': '32rem' 
       }
     }
   },

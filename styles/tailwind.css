@@ -26,4 +26,36 @@
     font-weight: bold;
     font-style: normal;
   }
+
+  .input-simple-wrapper {
+    @apply relative;
+    @apply text-sm;
+    @apply transition-colors;
+    @apply duration-150;
+    @apply my-4;
+  }
+  .input-simple {
+    @apply bg-gray-200;
+    @apply w-full;
+    @apply h-12;
+    @apply rounded-lg;
+    @apply px-4;
+    @apply text-xl;
+  }
+  .yellow-button {
+    @apply bg-thyellow;
+    @apply rounded-lg;
+    @apply py-2;
+    @apply px-4;
+  }
+  .loading-spinner{
+    @apply border-4;
+    @apply border-solid;
+    @apply rounded-full;
+    @apply animate-spin;
+    border-color: white #888 #888 #888;
+  }
+  .border-bot-separator {
+    border-bottom: 1px solid #ccc;
+  }
 }
