@@ -1,6 +1,4 @@
-import { CombosCarousel } from "../components/CombosCarousel"
 import { Navbar } from "../components/Navbar"
-import { ProductsList } from "../components/ProductsList"
 import { SeccionesCarousel } from "../components/SeccionesCarousel"
 
 const Home = () => {
