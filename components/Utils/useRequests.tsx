@@ -1,4 +1,4 @@
-const URL_BASE = "http://rapifood.test/api"
+const URL_BASE = process.env.NEXT_PUBLIC_API_URL
 
 export const useRequest = () => {
   const post = async (endpoint, data) => {
