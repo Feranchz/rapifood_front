@@ -24,6 +24,9 @@ module.exports = {
       },
       height: {
         '128': '32rem' 
+      },
+      boxShadow: {
+        'gradient': 'inset 5em 1em rgba(0,0,0,0.5)'
       }
     }
   },
