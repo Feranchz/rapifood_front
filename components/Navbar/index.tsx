@@ -6,33 +6,9 @@ import { ShoppingCart } from '../ShoppingCart'
 import { AuthModal } from '../Modals/AuthModal'
 import { useUser } from '../Utils/useUser'
 
-export const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [showShoppingCart, setShowShoppingCart] = useState(false)
-  const [authModal, setAuthModal] = useState(false)
-  const { userHook, refetch } = useUser()
-  const user = userHook()
-
-  useEffect(() => {
-    if(user.activate == 1){
-      setIsLoggedIn(true);
-    }
-  }, [user])
-
-  useEffect(() => {
-    refetch()
-  }, [])
-
-  const handleUserClick = () => {
-    if(isLoggedIn){
-
-    } else {
-      setAuthModal(true)
-    }
-  }
-
+export const Navbar = ({handleShoppingCart, handleAuthModal}) => {
   return (
-    <>
+    <div className="sticky top-0 z-30 bg-white">
       <div className="mx-auto max-w-8xl px-6">
         <div className="flex justify-between align-center flex-row py-4 md:py-6 relative">
           <div className="flex flex-1 items-center">
@@ -58,10 +34,10 @@ export const Navbar = () => {
           <div className="flex flex-1 justify-end space-x-8">
             <nav>
               <ul className="flex space-x-4">
-                <li className="relative" style={{width: 25, height: 25}} onClick={() => setShowShoppingCart(true)}>
+                <li className="relative" style={{width: 25, height: 25}} onClick={handleShoppingCart}>
                   <Image src="/icons/shopping-bag-solid.svg" layout="fill" />
                 </li>
-                <li className="relative rounded-full overflow-hidden" style={{width: 25, height: 25}} onClick={handleUserClick}>
+                <li className="relative rounded-full overflow-hidden" style={{width: 25, height: 25}} onClick={handleAuthModal}>
                   <Image src="/test/lilycollins.jpg" layout="fill" />
                 </li>
               </ul>
@@ -69,8 +45,6 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
-      <ShoppingCart isOpen={showShoppingCart} close={() => setShowShoppingCart(false)} />
-      <AuthModal visible={authModal} close={() => setAuthModal(false)} />
       <style jsx>{`
         .logo-container {
           position: relative;
@@ -86,6 +60,6 @@ export const Navbar = () => {
           font-size: 1.25em;
         }
       `}</style>
-    </>
+    </div>
   )
 }

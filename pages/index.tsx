@@ -1,7 +1,39 @@
 import { ComboBox } from "../components/HomePage/ComboBox"
+import { DestacadoBox } from "../components/HomePage/DestacadosBox"
 import { RestaurantSlider } from "../components/HomePage/RestaurantSlider"
 import { Navbar } from "../components/Navbar"
 import { SeccionesCarousel } from "../components/SeccionesCarousel"
+
+const DUMMY_PRODUCTS = [
+  {
+    name: "Product Name #1",
+    restaurant: "Restaurant name",
+    link: "/test",
+    image: "/test/burger.jpg",
+    price: 9.99
+  },
+  {
+    name: "Product Name #2",
+    restaurant: "Restaurant name",
+    link: "/test",
+    image: "/test/italian.jpg",
+    price: 9.99
+  },
+  {
+    name: "Product Name #3",
+    restaurant: "Restaurant name",
+    link: "/test",
+    image: "/test/sushicombo.jpg",
+    price: 9.99
+  },
+  {
+    name: "Product Name #4",
+    restaurant: "Restaurant name",
+    link: "/test",
+    image: "/test/burger.jpg",
+    price: 9.99
+  },
+]
 
 const Home = () => {
   return (
@@ -19,8 +51,16 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto max-w-8xl px-6">
+      <div className="mx-auto max-w-8xl px-6 py-4">
         <RestaurantSlider />
+      </div>
+      <div className="flex bg-thyellow mx-auto max-w-8xl px-6 flex-wrap">
+        <div className="md:w-1/2 w-full p-4">
+          <DestacadoBox title="Destacados" items={DUMMY_PRODUCTS} />
+        </div>
+        <div className="md:w-1/2 w-full p-4">
+          <DestacadoBox title="Novedades" items={DUMMY_PRODUCTS} />
+        </div>
       </div>
     </>
   )

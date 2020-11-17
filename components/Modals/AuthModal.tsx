@@ -245,9 +245,9 @@ export const AuthModal = ({visible, close, step = "register"}) => {
   }
 
   return (
-    <div className="w-full h-full top-0 left-0 flex items-center justify-center">
-      <div onClick={close} className="absolute top-0 w-full h-full bg-black z-20 opacity-75"></div>
-      <div className="fixed py-8 px-16 bg-white h-full md:h-auto w-full max-w-lg mx-auto rounded-lg shadow-lg z-30 top-0 md:top-40">
+    <div className="absolute w-full h-full top-0 left-0 flex items-center justify-center">
+      <div onClick={close} className="fixed top-0 w-full h-full bg-black z-40 opacity-75"></div>
+      <div className="fixed py-8 px-16 bg-white h-full md:h-auto w-full max-w-lg mx-auto rounded-lg shadow-lg z-50 top-0 md:top-40">
         <div className="absolute w-8 h-8 cursor-pointer top-20 right-20" onClick={close}>
           <Image src="/icons/times-circle-regular.svg" layout="fill" />
         </div>

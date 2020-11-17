@@ -27,6 +27,13 @@ module.exports = {
       },
       boxShadow: {
         'gradient': 'inset 5em 1em rgba(0,0,0,0.5)'
+      },
+      zIndex: {
+        '1': 1,
+        '2': 2,
+        '3': 3,
+        '4': 4,
+        '5': 5
       }
     }
   },

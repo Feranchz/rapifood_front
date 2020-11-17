@@ -9,10 +9,10 @@ export const ShoppingCart = ({ isOpen, close }) => {
     <>
       {
         isOpen ?
-        <div onClick={close} className="absolute top-0 w-full h-full bg-black z-20 opacity-75"></div> :
+        <div onClick={close} className="fixed top-0 w-full h-full bg-black z-40 opacity-75"></div> :
         null
       }
-      <aside className={`${isOpen ? 'translate-x-0' : 'translate-x-full'} transform top-0 right-0 md:w-2/5 w-full bg-white fixed h-full overflow-auto ease-in-out transition-all duration-300 z-30`}>
+      <aside className={`${isOpen ? 'translate-x-0' : 'translate-x-full'} transform top-0 right-0 md:w-2/5 w-full bg-white fixed h-full overflow-auto ease-in-out transition-all duration-300 z-50`}>
         <div className="mx-auto px-6 flex flex-col h-full">
           <div className="flex justify-between">
             <div onClick={close} className='w-8 h-8 relative mt-2'>
