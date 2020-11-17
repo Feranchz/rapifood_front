@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export const ComboBox = ({ image, name, restaurant, price }) => {
   return (
-    <div className="relative h-full w-full bg-red-900 shadow-gradient combo-wrapper">
+    <div className="relative h-full w-full shadow-gradient combo-wrapper">
       <div className="absolute h-full w-full inner-gradient z-1 none"></div>
       <Image src={image} layout="fill" className="combo-image" />
       <div className="absolute h-full w-full px-4 py-2 z-2">
