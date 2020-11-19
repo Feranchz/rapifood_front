@@ -3,7 +3,7 @@ import { useFilters } from "../../Contexts/Filters/context"
 import { FilterDropdown } from "../../Visuals/FilterDropdown"
 
 export const Restaurant = () => {
-  const { filters, dispatch, updateUrl } = useFilters()
+  const { filters, dispatch } = useFilters()
 
   const toggleChecked = (restaurantIndex) => {
     if(filters.restaurants[restaurantIndex].active){
@@ -17,8 +17,6 @@ export const Restaurant = () => {
         restaurantIndex
       })
     }
-
-    updateUrl()
   }
 
   return (

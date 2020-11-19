@@ -2,15 +2,18 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 import { RestaurantItem } from "./RestaurantItem";
+import { useFilters } from "../Contexts/Filters/context";
+import { Restaurant } from "../Filters/Restaurant";
+import Link from "next/link";
 
 export const RestaurantSlider = () => {
   const settings = {
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: 12,
+    slidesToShow: 8,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 3000,
     pauseOnHover: true,
     arrows: false,
     responsive: [
@@ -40,46 +43,20 @@ export const RestaurantSlider = () => {
       }
     ]
   }
+  const { filters } = useFilters()
 
   return (
     <div className="px-4 py-2">
       <Slider {...settings}>
-        <div className="relative h-32 py-2 px-4">
-          <RestaurantItem name="Restaurant Name" link="/test" image="/test/starbucks.jpg" />
-        </div>
-        <div className="relative h-32 py-2 px-4">
-          <RestaurantItem name="Restaurant Other" link="/test" image="/test/subway.jpg" />
-        </div>
-        <div className="relative h-32 py-2 px-4">
-          <RestaurantItem name="Restaurant Name" link="/test" image="/test/starbucks.jpg" />
-        </div>
-        <div className="relative h-32 py-2 px-4">
-          <RestaurantItem name="Restaurant Other" link="/test" image="/test/subway.jpg" />
-        </div>
-        <div className="relative h-32 py-2 px-4">
-          <RestaurantItem name="Restaurant Name" link="/test" image="/test/starbucks.jpg" />
-        </div>
-        <div className="relative h-32 py-2 px-4">
-          <RestaurantItem name="Restaurant Other" link="/test" image="/test/subway.jpg" />
-        </div>
-        <div className="relative h-32 py-2 px-4">
-          <RestaurantItem name="Restaurant Name" link="/test" image="/test/starbucks.jpg" />
-        </div>
-        <div className="relative h-32 py-2 px-4">
-          <RestaurantItem name="Restaurant Other" link="/test" image="/test/subway.jpg" />
-        </div>
-        <div className="relative h-32 py-2 px-4">
-          <RestaurantItem name="Restaurant Name" link="/test" image="/test/starbucks.jpg" />
-        </div>
-        <div className="relative h-32 py-2 px-4">
-          <RestaurantItem name="Restaurant Other" link="/test" image="/test/subway.jpg" />
-        </div>
-        <div className="relative h-32 py-2 px-4">
-          <RestaurantItem name="Restaurant Name" link="/test" image="/test/starbucks.jpg" />
-        </div>
-        <div className="relative h-32 py-2 px-4">
-          <RestaurantItem name="Restaurant Other" link="/test" image="/test/subway.jpg" />
-        </div>
+        {
+          filters.restaurants.map(({name, link, image}) => 
+            <Link href={link}>
+              <div className="relative h-32 py-2 px-4 cursor-pointer">
+                <RestaurantItem name={name} link={link} image={image} />
+              </div>  
+            </Link>
+          )
+        }
       </Slider>
     </div>
   )

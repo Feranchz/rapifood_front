@@ -292,37 +292,12 @@ const PRODUCTS_DUMMY = [
 
 const SearchPage = ({ filters: urlFilters }) => {
   const { filters, dispatch } = useFilters()
-  
+
   useEffect(() => {
-    if (urlFilters.foodType){
-      urlFilters.foodType.forEach(type => {
-        dispatch({
-          type: "ADD_TYPE",
-          typeIndex: TYPE_OPTIONS.findIndex(e => e.slug == type)
-        })
-      })
-    }
-
-    if (urlFilters.restaurants){
-      urlFilters.restaurants.forEach(restaurant => {
-        dispatch({
-          type: "ADD_RESTAURANT",
-          restaurantIndex: RESTAURANT_OPTIONS.findIndex(e => e.slug == restaurant)
-        })
-      })
-    }
-
-    if (urlFilters.minPrice){
+    if(urlFilters){
       dispatch({
-        type: "SET_MIN_PRICE",
-        minPrice: urlFilters.minPrice
-      })
-    }
-
-    if (urlFilters.maxPrice){
-      dispatch({
-        type: "SET_MAX_PRICE",
-        maxPrice: urlFilters.maxPrice
+        type: "RESET",
+        payload: urlFilters
       })
     }
   }, [])
@@ -340,32 +315,15 @@ const SearchPage = ({ filters: urlFilters }) => {
 }
 
 export async function getServerSideProps(context){
-  let newFilters = {
-    foodType: [],
-    restaurants: []
-  }
   let filters = context.query.filters
   if(filters){
-    filters.forEach(filter => {
-       let slugs = filter.split("-y-")
-  
-       // Food type
-       if(slugs.every(slug => TYPE_OPTIONS.some(type => type.slug == slug))){
-         newFilters.foodType = slugs
-       } else if (slugs.every(slug => RESTAURANT_OPTIONS.some(type => type.slug == slug))){
-         newFilters.restaurants = slugs
-       } else if (slugs[0].includes("desde")) {
-         newFilters.minPrice = slugs[0].split("-")[1]
-       } else if (slugs[0].includes("hasta")) {
-         newFilters.maxPrice = slugs[0].split("-")[1]
-       } else {
-  
-       }
+    filters = filters.map(filter => {
+      return filter.split("-y-")
     })
   }
 
   return {
-    props: {filters: newFilters}
+    props: {filters: filters ? filters : []}
   }
 }
 

@@ -3,7 +3,7 @@ import { useFilters } from "../../Contexts/Filters/context"
 import { FilterDropdown } from "../../Visuals/FilterDropdown"
 
 export const PriceRange = () => {
-  const { filters, dispatch, updateUrl } = useFilters()
+  const { filters, dispatch } = useFilters()
 
   return (
     <FilterDropdown title="Rango de Precios" show>
@@ -35,7 +35,7 @@ export const PriceRange = () => {
           />
         </div>
         <div className="w-2/12">
-          <button onClick={updateUrl} className="button-with-gradient relative w-full h-8 rounded-lg p-2">
+          <button className="button-with-gradient relative w-full h-8 rounded-lg p-2">
             <div className="relative w-full h-full">
               <Image src="/icons/check-solid.svg" layout="fill"/>
             </div>
