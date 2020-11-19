@@ -25,6 +25,8 @@ export const ProductModal = ({visible, close, product}) => {
     close()
   }
 
+  console.log(productInfo)
+
   return (
     <div className="absolute w-full h-full top-0 left-0 flex items-center justify-center">
       <div onClick={close} className="fixed top-0 w-full h-full bg-black z-40 opacity-75"></div>

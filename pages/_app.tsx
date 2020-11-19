@@ -9,6 +9,7 @@ import { useUser } from '../components/Utils/useUser'
 import { Footer } from "../components/Footer"
 import '../styles/tailwind.css'
 import { ProductModalProvider } from '../components/Contexts/ProductModal/context'
+import { FiltersProvider } from '../components/Contexts/Filters/context'
 
 function MyApp({ Component, pageProps }: AppProps){
   const [showShoppingCart, setShowShoppingCart] = useState(false)
@@ -34,15 +35,17 @@ function MyApp({ Component, pageProps }: AppProps){
 
   return (
     <ViewportProvider>
-      <CartProvider>
-        <ProductModalProvider>
-          <ShoppingCart isOpen={showShoppingCart} close={() => setShowShoppingCart(false)} />
-          <AuthModal visible={authModal} close={() => setAuthModal(false)} />
-          <Navbar handleShoppingCart={handleShoppingCart} handleAuthModal={handleAuthModal} />
-          <Component {...pageProps} />
-          <Footer />
-        </ProductModalProvider>
-      </CartProvider>
+      <FiltersProvider>
+        <CartProvider>
+          <ProductModalProvider>
+            <ShoppingCart isOpen={showShoppingCart} close={() => setShowShoppingCart(false)} />
+            <AuthModal visible={authModal} close={() => setAuthModal(false)} />
+            <Navbar handleShoppingCart={handleShoppingCart} handleAuthModal={handleAuthModal} />
+            <Component {...pageProps} />
+            <Footer />
+          </ProductModalProvider>
+        </CartProvider>
+      </FiltersProvider>
     </ViewportProvider>
   )
 }
