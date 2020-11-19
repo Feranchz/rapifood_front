@@ -13,7 +13,7 @@ module.exports = {
     extend: {
       colors: {
         'thyellow': '#FFCB19',
-        'inputGray': '#F6F6F6'
+        'inputGray': '#eeeeee'
       },
       fontFamily: {
         'sans': ['JTMarnie', 'Helvetica']
@@ -34,6 +34,9 @@ module.exports = {
         '3': 3,
         '4': 4,
         '5': 5
+      },
+      maxHeight: {
+        'modal': 'calc(100vh - 100px)'
       }
     }
   },

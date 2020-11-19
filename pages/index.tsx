@@ -6,6 +6,7 @@ import { SeccionesCarousel } from "../components/SeccionesCarousel"
 
 const DUMMY_PRODUCTS = [
   {
+    id: 1,
     name: "Product Name #1",
     restaurant: "Restaurant name",
     link: "/test",
@@ -13,6 +14,7 @@ const DUMMY_PRODUCTS = [
     price: 9.99
   },
   {
+    id: 2,
     name: "Product Name #2",
     restaurant: "Restaurant name",
     link: "/test",
@@ -20,6 +22,7 @@ const DUMMY_PRODUCTS = [
     price: 9.99
   },
   {
+    id: 3,
     name: "Product Name #3",
     restaurant: "Restaurant name",
     link: "/test",
@@ -27,6 +30,7 @@ const DUMMY_PRODUCTS = [
     price: 9.99
   },
   {
+    id: 4,
     name: "Product Name #4",
     restaurant: "Restaurant name",
     link: "/test",

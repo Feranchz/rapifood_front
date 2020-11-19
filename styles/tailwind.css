@@ -73,4 +73,12 @@
     @apply w-8;
     @apply bg-red-900;
   }
+  .button-with-gradient{
+    @apply bg-gradient-to-tr;
+    @apply from-thyellow;
+    @apply to-yellow-600;
+  }
+  .button-with-gradient:focus{
+    @apply outline-none;
+  }
 }

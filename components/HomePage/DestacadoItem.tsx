@@ -1,6 +1,100 @@
 import Image from "next/image"
+import { useProductModal } from "../Contexts/ProductModal/context"
+import { useCart } from "../Contexts/ShoppingCart/context"
 
-export const DestacadoItem = ({name, restaurant, image, link, price}) => {
+const DUMMY_EXTRAS = [
+  {
+    id: 1,
+    name: "Extra #1",
+    price: 0.99,
+    max: 3,
+    quantity: 0
+  },
+  {
+    id: 2,
+    name: "Extra #1",
+    price: 0.99,
+    max: 3,
+    quantity: 0
+  },
+  {
+    id: 3,
+    name: "Extra #1",
+    price: 0.99,
+    max: 3,
+    quantity: 0
+  },
+  {
+    id: 4,
+    name: "Extra #1",
+    price: 0.99,
+    max: 3,
+    quantity: 0
+  },
+  {
+    id: 1,
+    name: "Extra #1",
+    price: 0.99,
+    max: 3,
+    quantity: 0
+  }
+]
+
+const DUMMY_EXTRAS2 = [
+  {
+    id: 1,
+    name: "Extra #2",
+    price: 0.99,
+    max: 3,
+    quantity: 0
+  },
+  {
+    id: 2,
+    name: "Extra #2",
+    price: 0.99,
+    max: 3,
+    quantity: 0
+  },
+  {
+    id: 3,
+    name: "Extra #2",
+    price: 0.99,
+    max: 3,
+    quantity: 0
+  },
+  {
+    id: 4,
+    name: "Extra #2",
+    price: 0.99,
+    max: 3,
+    quantity: 0
+  },
+  {
+    id: 1,
+    name: "Extra #2",
+    price: 0.99,
+    max: 3,
+    quantity: 0
+  }
+]
+
+export const DestacadoItem = ({id, name, restaurant, image, link, price, discount = 0, description = "prueba prueba prueba aaa adwad dwad d prueba"}) => {
+  const { setProductModal } = useProductModal()
+
+  const addProduct = () => {
+    setProductModal({
+      id,
+      name,
+      restaurant,
+      image,
+      link,
+      price,
+      discount,
+      description,
+      extras: id > 2 ? DUMMY_EXTRAS : DUMMY_EXTRAS2
+    })
+  }
+
   return (
     <div className="md:w-1/2 w-full my-4">
       <div className="md:w-5/6 w-full bg-white rounded-t-lg shadow-lg overflow-hidden">
@@ -16,7 +110,7 @@ export const DestacadoItem = ({name, restaurant, image, link, price}) => {
             <p className="text-xl font-bold mt-5 text-right mr-2"><span className="text-thyellow">$</span>{price}</p>
           </div>
         </div>
-        <div className="flex bg-black h-10 transition-all duration-300 ease-in hover:bg-thyellow hover:shadow-inner py-2">
+        <div className="flex bg-black h-10 transition-all duration-300 ease-in hover:bg-thyellow hover:shadow-inner py-2" onClick={addProduct}>
           <div className="relative text-white h-full w-64 mx-auto">
             <Image src="/icons/plus-solid.svg" layout="fill" className="text-white" />
           </div>
