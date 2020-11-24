@@ -226,7 +226,9 @@ export const FiltersProvider = ({children}) => {
   }
 
   useEffect(() => {
-    updateUrl()
+    if(router.pathname == "/buscar/[[...filters]]"){
+      updateUrl()
+    }
   }, [filters])
 
   return (
