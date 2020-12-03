@@ -24,6 +24,8 @@
     "**/*.tsx", "pages/combo/[seo]"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "components/**",
+    "pages/**"
   ]
 }
