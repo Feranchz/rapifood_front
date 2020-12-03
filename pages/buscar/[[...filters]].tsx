@@ -1,296 +1,10 @@
-import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import { SimpleButton } from "../../components/Buttons/SimpleButton"
 import { FiltersProvider, RESTAURANT_OPTIONS, TYPE_OPTIONS, useFilters } from "../../components/Contexts/Filters/context"
 import { Filters } from "../../components/Filters"
 import { SearchResults } from "../../components/SearchPage/SearchResults"
+import { useRequest } from "../../components/Utils/useRequests"
 
-const PRODUCTS_DUMMY = [
-  {
-    image: "/test/burger.jpg",
-    name: "Calzone",
-    restaurant: "Simone's",
-    price: 9.95,
-    id: 1,
-    link: "/combo/adwa/1",
-    discount: 0,
-    description: "prueba test desd ad dwad dawmd lorem",
-    extras: [
-  {
-    id: 1,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 2,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 3,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 4,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 1,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  }
-]
-  },
-  {
-    image: "/test/italian.jpg",
-    name: "Blue Nutella Croissant",
-    restaurant: "Simone's",
-    price: 9.95,
-    id: 1,
-    link: "/test",
-    discount: 0,
-    description: "prueba test desd ad dwad dawmd lorem",
-    extras: [
-  {
-    id: 1,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 2,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 3,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 4,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 1,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  }
-]
-  },
-  {
-    image: "/test/sushicombo.jpg",
-    name: "Calzone",
-    restaurant: "Simone's",
-    price: 9.95,
-    id: 1,
-    link: "/test",
-    discount: 0,
-    description: "prueba test desd ad dwad dawmd lorem",
-    extras: [
-  {
-    id: 1,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 2,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 3,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 4,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 1,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  }
-]
-  },
-  {
-    image: "/test/burger.jpg",
-    name: "Calzone",
-    restaurant: "Simone's",
-    price: 9.95,
-    id: 1,
-    link: "/test",
-    discount: 0,
-    description: "prueba test desd ad dwad dawmd lorem",
-    extras: [
-  {
-    id: 1,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 2,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 3,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 4,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 1,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  }
-]
-  },
-  {
-    image: "/test/italian.jpg",
-    name: "Calzone",
-    restaurant: "Simone's",
-    price: 9.95,
-    id: 1,
-    link: "/test",
-    discount: 0,
-    description: "prueba test desd ad dwad dawmd lorem",
-    extras: [
-  {
-    id: 1,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 2,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 3,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 4,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 1,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  }
-]
-  },
-  {
-    image: "/test/sushicombo.jpg",
-    name: "Calzone",
-    restaurant: "Simone's",
-    price: 9.95,
-    id: 1,
-    link: "/test",
-    discount: 0,
-    description: "prueba test desd ad dwad dawmd lorem",
-    extras: [
-  {
-    id: 1,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 2,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 3,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 4,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  },
-  {
-    id: 1,
-    name: "Extra #1",
-    price: 0.99,
-    max: 3,
-    quantity: 0
-  }
-]
-  }
-]
-
-const SearchPage = ({ filters: urlFilters }) => {
+const SearchPage = ({ filters: urlFilters, combos }) => {
   const { filters, dispatch } = useFilters()
   const [showFilter, setShowFilter] = useState(false)
 
@@ -320,7 +34,7 @@ const SearchPage = ({ filters: urlFilters }) => {
         <div className="md:hidden flex p-2 border-b z-30">
           <button className="button-with-gradient w-full h-8 rounded-lg" onClick={() => setShowFilter(true)}>Filtros</button>
         </div>
-        <SearchResults products={PRODUCTS_DUMMY} />
+        <SearchResults products={combos} />
       </div>
     </div>
   )
@@ -328,14 +42,52 @@ const SearchPage = ({ filters: urlFilters }) => {
 
 export async function getServerSideProps(context){
   let filters = context.query.filters
+  let combos = []
+  let query = {
+    restaurant_id: [],
+    type_id: []
+  }
   if(filters){
     filters = filters.map(filter => {
       return filter.split("-y-")
     })
-  }
 
+    filters.forEach(fil => {
+      fil.forEach(slug => {
+        if(slug.includes("desde")){
+          query.minPrice = slug.split("-")[1]
+          return
+        } else if (slug.includes("hasta")){
+          query.maxPrice = slug.split("-")[1]
+          return
+        }
+    
+        for(let i = 0; i < TYPE_OPTIONS.length; i++){
+          if(slug == TYPE_OPTIONS[i].slug){
+            query.type_id.push(TYPE_OPTIONS[i].id)
+            return
+          }
+        }
+    
+        for(let i = 0; i < RESTAURANT_OPTIONS.length; i++){
+          if(slug == RESTAURANT_OPTIONS[i].slug){
+            query.restaurant_id.push(RESTAURANT_OPTIONS[i].id)
+            return
+          }
+        }
+      })
+    })  
+  }
+  
+  const { post } = useRequest()
+  const response = await post("/productFilter", query, "")
+  combos = response;
+  
   return {
-    props: {filters: filters ? filters : []}
+    props: {
+      filters: filters ? filters : [],
+      combos
+    }
   }
 }
 

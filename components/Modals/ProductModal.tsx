@@ -6,6 +6,8 @@ import { AddButton } from "../Visuals/AddButton.tsx"
 import { ExtraItem } from "../Visuals/ExtraItem.tsx"
 import { NumInput } from "../Visuals/NumInput.tsx"
 
+const IMAGE_BASE = "http://rapifood-backend.tk:8001"
+
 export const ProductModal = ({visible, close, product}) => {
   const [productInfo, dispatch] = useReducer(productReducer, {
     product: product,
@@ -25,8 +27,6 @@ export const ProductModal = ({visible, close, product}) => {
     close()
   }
 
-  console.log(productInfo)
-
   return (
     <div className="absolute w-full h-full top-0 left-0 flex items-center justify-center">
       <div onClick={close} className="fixed top-0 w-full h-full bg-black z-40 opacity-75"></div>
@@ -36,7 +36,7 @@ export const ProductModal = ({visible, close, product}) => {
         </div>
         <div className="px-4 w-full md:w-1/3">
           <div className="relative w-full h-40">
-            <Image src={"/test"} layout="fill" />
+            <Image src={IMAGE_BASE + productInfo.product.image} layout="fill" />
           </div>
         </div>
         <div className="flex flex-col overflow-y-hidden md:w-2/3">

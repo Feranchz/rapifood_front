@@ -90,7 +90,7 @@ export const DestacadoItem = ({id, name, restaurant_name, image_url, link, price
       id,
       name,
       restaurant_name,
-      image_url,
+      image: image_url,
       link,
       price,
       discount,

@@ -35,6 +35,7 @@ export const filtersReducer = (state, action) => {
       let newState = cloneDeep(initialState)
       action.payload.forEach(filter => {
         filter.forEach(slug => {
+          console.log(slug)
           if(slug.includes("desde")){
             newState.minPrice = slug.split("-")[1]
             return

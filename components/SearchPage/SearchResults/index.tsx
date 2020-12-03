@@ -1,8 +1,6 @@
 import { ProductItem } from "../ProductItem"
 
 export const SearchResults = ({products}) => {
-  products = [...products, ...products, ...products, ...products]
-
   return (
     <div className="flex flex-wrap">
       {products.map(product => (
