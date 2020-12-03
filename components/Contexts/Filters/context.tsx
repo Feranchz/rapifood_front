@@ -67,7 +67,7 @@ export const TYPE_OPTIONS = [
 
 export const RESTAURANT_OPTIONS = [
   {
-    id: 1,
+    id: 2,
     name: "McDonald's",
     active: false,
     image: "/restaurants/mcdonalds.jpg",
@@ -75,7 +75,7 @@ export const RESTAURANT_OPTIONS = [
     slug: "mcdonalds"
   },
   {
-    id: 2,
+    id: 3,
     name: "Subway",
     active: false,
     image: "/restaurants/subway.jpg",
@@ -83,7 +83,7 @@ export const RESTAURANT_OPTIONS = [
     slug: "subway"
   },
   {
-    id: 3,
+    id: 4,
     name: "Wendy's",
     active: false,
     image: "/restaurants/wendys.jpg",
@@ -91,7 +91,7 @@ export const RESTAURANT_OPTIONS = [
     slug: "wendys"
   },
   {
-    id: 4,
+    id: 5,
     name: "Pizza Hut",
     active: false,
     image: "/restaurants/pizzahut.jpg",
@@ -99,7 +99,7 @@ export const RESTAURANT_OPTIONS = [
     slug: "pizzahut"
   },
   {
-    id: 5,
+    id: 6,
     name: "KFC",
     active: false,
     image: "/restaurants/kfc.jpg",
@@ -107,7 +107,7 @@ export const RESTAURANT_OPTIONS = [
     slug: "kfc"
   },
   {
-    id: 6,
+    id: 7,
     name: "Babel Restaurant",
     active: false,
     image: "/restaurants/babel.jpg",
@@ -115,7 +115,7 @@ export const RESTAURANT_OPTIONS = [
     slug: "babel"
   },
   {
-    id: 7,
+    id: 8,
     name: "Nobu Sushi",
     active: false,
     image: "/restaurants/nobu.jpg",
@@ -123,7 +123,7 @@ export const RESTAURANT_OPTIONS = [
     slug: "nobu"
   },
   {
-    id: 8,
+    id: 9,
     name: "The Veggies",
     active: false,
     image: "/restaurants/veggies.jpg",
@@ -131,7 +131,7 @@ export const RESTAURANT_OPTIONS = [
     slug: "veggies"
   },
   {
-    id: 9,
+    id: 10,
     name: "Tacos Mi Cuate",
     active: false,
     image: "/restaurants/micuate.jpg",
@@ -139,7 +139,7 @@ export const RESTAURANT_OPTIONS = [
     slug: "micuate"
   },
   {
-    id: 10,
+    id: 11,
     name: "Mamma Bella",
     active: false,
     image: "/restaurants/mammabella.jpg",
@@ -147,7 +147,7 @@ export const RESTAURANT_OPTIONS = [
     slug: "mammabella"
   },
   {
-    id: 11,
+    id: 12,
     name: "Chef Woo",
     active: false,
     image: "/restaurants/chefwoo.jpg",
@@ -155,7 +155,7 @@ export const RESTAURANT_OPTIONS = [
     slug: "chefwoo"
   },
   {
-    id: 12,
+    id: 13,
     name: "Páramo Café",
     active: false,
     image: "/restaurants/paramo.jpg",
