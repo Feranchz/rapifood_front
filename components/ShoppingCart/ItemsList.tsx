@@ -3,6 +3,8 @@ import { useCart } from "../Contexts/ShoppingCart/context"
 import { ProductItem } from "../SearchPage/ProductItem"
 import { NumInput } from "../Visuals/NumInput.tsx"
 
+const IMAGE_BASE = "http://rapifood-backend.tk:8001"
+
 export const ItemsList = ({products}) => {
   const {dispatch} = useCart()
 
@@ -42,7 +44,7 @@ export const ItemsList = ({products}) => {
             X
           </div>
           <div className="w-20 h-20 relative">
-            <Image src={image} layout="fill" className="combo-image" />
+            <Image src={IMAGE_BASE + image} layout="fill" className="combo-image" />
           </div>
           <div className="flex-grow px-2">
             <p className="text-xl font-bold">{name}</p>

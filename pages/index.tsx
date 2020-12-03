@@ -3,6 +3,10 @@ import { DestacadoBox } from "../components/HomePage/DestacadosBox"
 import { RestaurantSlider } from "../components/HomePage/RestaurantSlider"
 import { Navbar } from "../components/Navbar"
 import { SeccionesCarousel } from "../components/SeccionesCarousel"
+import { useRequest } from "../components/Utils/useRequests"
+import Cookies from "cookies"
+
+const IMAGE_BASE = "http://rapifood-backend.tk:8001"
 
 const DUMMY_PRODUCTS = [
   {
@@ -39,19 +43,19 @@ const DUMMY_PRODUCTS = [
   },
 ]
 
-const Home = () => {
+const Home = ({ superCombos, destacados, news }) => {
   return (
     <>
       <div className="flex flex-wrap">
         <div className="md:w-1/2 w-full md:h-128 h-64">
-          <ComboBox image="/test/sushicombo.jpg" name="Super Combo Name #1" restaurant="Restaurant Name" price={9.99} />
+          <ComboBox link={superCombos[0]?.link} image={IMAGE_BASE + superCombos[0]?.image_url} name={superCombos[0]?.name} restaurant={superCombos[0]?.restaurant_name} price={superCombos[0]?.price} />
         </div>
         <div className="md:w-1/2 w-full">
           <div className="h-64 bg-red-800">
-            <ComboBox image="/test/burger.jpg" name="Super Combo Name #2" restaurant="Restaurant Name" price={9.99} />
+            <ComboBox link={superCombos[1]?.link} image={IMAGE_BASE + superCombos[1]?.image_url} name={superCombos[1]?.name} restaurant={superCombos[1]?.restaurant_name} price={superCombos[1]?.price} />
           </div>
           <div className="h-64 bg-red-700">
-          <ComboBox image="/test/italian.jpg" name="Super Combo Name #3" restaurant="Restaurant Name" price={9.99} />
+          <ComboBox link={superCombos[2]?.link} image={IMAGE_BASE + superCombos[2]?.image_url} name={superCombos[2]?.name} restaurant={superCombos[2]?.restaurant_name} price={superCombos[2]?.price} />
           </div>
         </div>
       </div>
@@ -60,14 +64,37 @@ const Home = () => {
       </div>
       <div className="flex bg-thyellow mx-auto max-w-8xl px-6 flex-wrap">
         <div className="md:w-1/2 w-full p-4">
-          <DestacadoBox title="Destacados" items={DUMMY_PRODUCTS} />
+          <DestacadoBox title="Destacados" items={destacados} />
         </div>
         <div className="md:w-1/2 w-full p-4">
-          <DestacadoBox title="Novedades" items={DUMMY_PRODUCTS} />
+          <DestacadoBox title="Novedades" items={news} />
         </div>
       </div>
     </>
   )
+}
+
+export async function getServerSideProps({req, res}){
+  const cookies = new Cookies(req, res)
+
+  const { post } = useRequest()
+  const superCombos = await post("/productFilter", {
+    super_combo: true
+  }, "")
+
+  const response = await post("/productFilter", {
+    destacado: true
+  }, "")
+
+
+
+  return {
+    props: {
+      superCombos,
+      destacados: [response[0], response[1], response[2], response[3]],
+      news: [response[4], response[5], response[6], response[7]]
+    }
+  }
 }
 
 export default Home;

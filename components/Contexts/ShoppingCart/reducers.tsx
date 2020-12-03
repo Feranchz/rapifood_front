@@ -1,12 +1,12 @@
 export const mainReducer = (state, action) => {
   let newProducts = []
 
-  console.log(state, action)
+  let deepCopy = JSON.parse(JSON.stringify(state))
 
   switch(action.type){
     case "ADD_PRODUCT":
       newProducts = [
-        ...state.products,
+        ...deepCopy.products,
         {
           id: action.product.id,
           name: action.product.name,
@@ -23,32 +23,32 @@ export const mainReducer = (state, action) => {
     case "REMOVE_PRODUCT":
       // productIndex
       newProducts = [
-        ...state.products.filter((product, index) => index !== action.productIndex)
+        ...deepCopy.products.filter((product, index) => index !== action.productIndex)
       ]
     break;
     case "PLUS_PRODUCT":
       // productIndex
       newProducts = [
-        ...state.products
+        ...deepCopy.products
       ]
       newProducts[action.productIndex].quantity += 1
     break;
     case "SUB_PRODUCT":
       newProducts = [
-        ...state.products
+        ...deepCopy.products
       ]
       newProducts[action.productIndex].quantity -= 1
 
       if(newProducts[action.productIndex].quantity == 0){
         newProducts = [
-          ...state.products.filter((product, index) => index !== action.productIndex)
+          ...deepCopy.products.filter((product, index) => index !== action.productIndex)
         ]
       }
     break;
     case "ADD_EXTRA":
       // productIndex
       newProducts = [
-        ...state.products
+        ...deepCopy.products
       ]
       newProducts[action.payload.productIndex].extras.push({
         id: action.payload.id,
@@ -62,7 +62,7 @@ export const mainReducer = (state, action) => {
     case "REMOVE_EXTRA":
       // productIndex, extraId
       newProducts = [
-        ...state.products
+        ...deepCopy.products
       ]
       newProducts[action.payload.productIndex].extras = newProducts[action.payload.productIndex].extras.filter(extra => {
         extra.id !== action.payload.extraId

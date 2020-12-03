@@ -10,6 +10,8 @@ import { Footer } from "../components/Footer"
 import '../styles/tailwind.css'
 import { ProductModalProvider } from '../components/Contexts/ProductModal/context'
 import { FiltersProvider } from '../components/Contexts/Filters/context'
+import { SnackProvider } from '../components/Snacks/context'
+import { UserProvider } from '../components/Contexts/User/context'
 
 function MyApp({ Component, pageProps }: AppProps){
   const [showShoppingCart, setShowShoppingCart] = useState(false)
@@ -26,27 +28,27 @@ function MyApp({ Component, pageProps }: AppProps){
   }
 
   const handleAuthModal = () => {
-    if(user?.activate){
-
-    } else {
-      setAuthModal(true)
-    }
+    setAuthModal(true)
   }
 
   return (
-    <ViewportProvider>
-      <FiltersProvider>
-        <CartProvider>
-          <ProductModalProvider>
-            <ShoppingCart isOpen={showShoppingCart} close={() => setShowShoppingCart(false)} />
-            <AuthModal visible={authModal} close={() => setAuthModal(false)} />
-            <Navbar handleShoppingCart={handleShoppingCart} handleAuthModal={handleAuthModal} />
-            <Component {...pageProps} />
-            <Footer />
-          </ProductModalProvider>
-        </CartProvider>
-      </FiltersProvider>
-    </ViewportProvider>
+    <SnackProvider>
+      <UserProvider>
+        <ViewportProvider>
+          <FiltersProvider>
+            <CartProvider>
+              <ProductModalProvider>
+                <ShoppingCart isOpen={showShoppingCart} close={() => setShowShoppingCart(false)} />
+                <AuthModal visible={authModal} close={() => setAuthModal(false)} />
+                <Navbar handleShoppingCart={handleShoppingCart} handleAuthModal={handleAuthModal} />
+                <Component {...pageProps} />
+                <Footer />
+              </ProductModalProvider>
+            </CartProvider>
+          </FiltersProvider>
+        </ViewportProvider>
+      </UserProvider>
+    </SnackProvider>
   )
 }
 

@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import { useUser } from '../Contexts/User/context'
+import { useSnack } from '../Snacks/context'
 import { useRequest } from '../Utils/useRequests'
-import { useUser } from '../Utils/useUser'
+import cookieCutter from "cookie-cutter"
 
 const Register = ({ loginStep, closeModal }) => {
   const [nameError, setNameError] = useState('')
@@ -12,7 +14,8 @@ const Register = ({ loginStep, closeModal }) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const { post } = useRequest()
-  const { refetch } = useUser()
+  const { setUser } = useUser()
+  const { showSnack } = useSnack()
 
   useEffect(() => {
     setError('')
@@ -63,9 +66,10 @@ const Register = ({ loginStep, closeModal }) => {
       setIsLoading(true)
       const response = await post('/signup', values)
       if(response.status){
-        localStorage.setItem("auth_token", response.data.api_token)
+        showSnack("Bienvenido", "Usuario creado correctamente", "success")
+        cookieCutter.set("auth_token", response.data.api_token)
         closeModal()
-        refetch()
+        setUser(response.data)
       } else {
         setError("El correo ya esta registrado.")
       }
@@ -109,12 +113,10 @@ const Register = ({ loginStep, closeModal }) => {
         }
       </div>
       <div>
-        <button disabled={isLoading} type="submit" className="yellow-button w-full flex items-center justify-center">
+        <button disabled={isLoading} type="submit" className="yellow-button w-full flex items-center justify-center h-10">
           {
             isLoading ?
             <>
-              <div className="loading-spinner h-4 w-4 mx-1"></div>
-              <div className="loading-spinner h-4 w-4 mx-1"></div>
               <div className="loading-spinner h-4 w-4 mx-1"></div>
             </> :
             'Registrarse'
@@ -137,6 +139,8 @@ const Login = ({ registerStep, closeModal }) => {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
   const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const { showSnack } = useSnack()
 
   const { post } = useRequest()
   const { refetch } = useUser()
@@ -176,14 +180,17 @@ const Login = ({ registerStep, closeModal }) => {
     }
 
     if(noErrors){
+      setIsLoading(true)
       const response = await post('/login', values)
       if(response.status){
-        localStorage.setItem('auth_token', response.token)
+        cookieCutter.set("auth_token", response.token)
+        showSnack("¡Hola!", `Bienvenido de nuevo.`, "success")
         closeModal()
         refetch()
       } else {
         setError('Correo o contraseña incorrectos.')
       }
+      setIsLoading(false)
     }
   }
 
@@ -212,8 +219,14 @@ const Login = ({ registerStep, closeModal }) => {
         <label className="ml-2">Recordarme</label> 
       </div>
       <div>
-        <button type="submit" className="yellow-button w-full">
-          Iniciar Sesión
+        <button type="submit" className="yellow-button w-full flex items-center justify-center h-10">
+          {
+            isLoading ?
+            <>
+              <div className="loading-spinner h-4 w-4 mx-1"></div>
+            </> :
+            'Ingresar'
+          }
         </button>
         {
           error ?
@@ -230,6 +243,10 @@ const Login = ({ registerStep, closeModal }) => {
 
 export const AuthModal = ({visible, close, step = "register"}) => {
   const [actualStep, setActualStep] = useState(step)
+
+  useEffect(() => {
+    setActualStep(step)
+  }, [step])
 
   if (!visible) return null
 

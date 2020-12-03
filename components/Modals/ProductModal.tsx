@@ -36,7 +36,7 @@ export const ProductModal = ({visible, close, product}) => {
         </div>
         <div className="px-4 w-full md:w-1/3">
           <div className="relative w-full h-40">
-            <Image src={productInfo.product.image} layout="fill" />
+            <Image src={"/test"} layout="fill" />
           </div>
         </div>
         <div className="flex flex-col overflow-y-hidden md:w-2/3">

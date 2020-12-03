@@ -1,24 +1,28 @@
+import cloneDeep from "lodash.clonedeep"
+
 export const productReducer = (state, action) => {
   let newProduct = {}
+
+  let deepCopy = cloneDeep(state)
   
   switch(action.type){
     case "SET_EXTRAS":
       newProduct = {
-        ...state,
+        ...deepCopy,
         extras: action.extras
       }
     break;
     case "PLUS_EXTRA":
       // extraIndex
       newProduct = {
-        ...state.product
+        ...deepCopy.product
       }
       newProduct.extras[action.extraIndex].quantity += 1
     break;
     case "SUB_EXTRA":
       // extraIndex
       newProduct = {
-        ...state.product
+        ...deepCopy.product
       }
       newProduct.extras[action.extraIndex].quantity -= 1
   }

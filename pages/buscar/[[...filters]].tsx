@@ -12,7 +12,7 @@ const PRODUCTS_DUMMY = [
     restaurant: "Simone's",
     price: 9.95,
     id: 1,
-    link: "/test",
+    link: "/combo/adwa/1",
     discount: 0,
     description: "prueba test desd ad dwad dawmd lorem",
     extras: [
