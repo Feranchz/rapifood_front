@@ -9,7 +9,7 @@ const initialState = {
   total: 0
 }
 
-const CartContext = createContext([
+export const CartContext = createContext([
   initialState,
   () => null
 ])

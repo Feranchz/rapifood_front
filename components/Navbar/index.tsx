@@ -1,14 +1,16 @@
 import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { AuthModal } from '../Modals/AuthModal'
 import { Menu } from './Menu'
 import { useUser } from '../Contexts/User/context'
+import { CartContext } from "../Contexts/ShoppingCart/context"
 
 export const Navbar = ({handleShoppingCart, handleAuthModal}) => {
   const { user, setUser, refetch } = useUser()
   const [menu, setMenu] = useState(false)
+  const [cart] = useContext(CartContext) 
 
   const handleAuth = () => {
     if (user?.name){
@@ -44,10 +46,17 @@ export const Navbar = ({handleShoppingCart, handleAuthModal}) => {
               <ul className="flex space-x-4">
                 <li className="relative" style={{width: 25, height: 25}} onClick={handleShoppingCart}>
                   <Image src="/icons/shopping-bag-solid.svg" layout="fill" />
+                  {
+                    cart.products.length > 0 ?
+                    <div className="bg-red-600 absolute w-4 h-4 rounded-full bottom-0 left-0 text-xs text-center" style={{marginBottom: -8, marginLeft: -8}}>
+                      {cart.products.length}
+                    </div>
+                    : null
+                  }
                 </li>
                 <li className="relative rounded-full overflow-hidden" style={{width: 25, height: 25}}>
                   <div onClick={handleAuth}>
-                    <Image src="/test/lilycollins.jpg" layout="fill" />
+                    <Image src="/gradient.jpg" layout="fill" />
                   </div>
                   {
                     menu ? 
