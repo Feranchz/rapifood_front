@@ -21,6 +21,7 @@ export const useRequest = () => {
       body: JSON.stringify(data)
     })
     return response.json();
+    
   }
 
   const get = async (endpoint, tk = null) => {
