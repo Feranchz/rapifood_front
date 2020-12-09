@@ -7,6 +7,7 @@ import { Tabs } from "../../components/Visuals/Tabs.tsx";
 import { CreditCardModal } from "../../components/Modals/CreditCardModal"
 import { UserInfo } from "../../components/Visuals/UserInfo";
 import { useRouter } from "next/router";
+import { useRequest } from "../../components/Utils/useRequests";
 
 const PEDIDOS_DUMMY = [
   {
@@ -164,6 +165,9 @@ const Account = ({ tab }) => {
   const [creditCardModal, setCreditCardModal] = useState(false)
   const router = useRouter()
 
+  const [orders, setOrders] = useState([])
+  const { get } = useRequest()
+
   useEffect(() => {
     setActiveTab(tab)
   }, [tab])
@@ -172,6 +176,21 @@ const Account = ({ tab }) => {
     router.push(`/cuenta/${activeTab}`, `/cuenta/${activeTab}`, {
       shallow: true
     })
+  }, [activeTab])
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      if(activeTab == "pedidos"){
+        const res = await get("/myOrders")
+        if(res?.data?.length > 0){
+          setOrders(res.data)
+        } else {
+          setOrders([])
+        }
+      }
+    }
+
+    fetchOrders()
   }, [activeTab])
 
   const OPTIONS = [
@@ -195,7 +214,7 @@ const Account = ({ tab }) => {
         <div className="w-full md:w-1/3 shadow-md rounded-lg border py-2 px-4 flex flex-wrap md:content-start">
           <div className="w-1/3 md:w-full relative px-2">
             <div className="relative w-full h-20 md:h-40 rounded-lg overflow-hidden">
-              <Image src="/test/lilycollins.jpg" className="combo-image" layout="fill" />
+              <Image src="/gradient.jpg" className="combo-image" layout="fill" />
             </div>
           </div>
           <div className="w-2/3 md:px-4">
@@ -225,7 +244,7 @@ const Account = ({ tab }) => {
             activeTab == "pedidos" ?
             <div className="py-2">
               {
-                PEDIDOS_DUMMY.map((order) => 
+                orders.map((order) => 
                   <OrderItem {...order} />
                 ) 
               }
@@ -257,6 +276,8 @@ const Account = ({ tab }) => {
 
 export async function getServerSideProps(context){
   let tab = context.params?.option ? context.params.option[0] : "cuenta"
+
+
 
   return {
     props: {
