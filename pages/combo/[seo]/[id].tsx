@@ -106,42 +106,42 @@ export async function getServerSideProps({ req, res, params}){
       ...response.data,
       ingredients: ["Ingrediente 1", "Ingrediente 2", "Ingrediente 3"],
       extras: [
-    {
-      id: 1,
-      name: "Extra #1",
-      price: 0.99,
-      max: 3,
-      quantity: 0
-    },
-    {
-      id: 2,
-      name: "Extra #1",
-      price: 0.99,
-      max: 3,
-      quantity: 0
-    },
-    {
-      id: 3,
-      name: "Extra #1",
-      price: 0.99,
-      max: 3,
-      quantity: 0
-    },
-    {
-      id: 4,
-      name: "Extra #1",
-      price: 0.99,
-      max: 3,
-      quantity: 0
-    },
-    {
-      id: 1,
-      name: "Extra #1",
-      price: 0.99,
-      max: 3,
-      quantity: 0
-    }
-  ]
+        {
+          id: 1,
+          name: "Refresco Coca Cola 2LT",
+          price: 1,
+          max: 3,
+          quantity: 0
+        },
+        {
+          id: 2,
+          name: "Refresco Pepsi 2LT",
+          price: 1,
+          max: 3,
+          quantity: 0
+        },
+        {
+          id: 3,
+          name: "Papitas",
+          price: 1.5,
+          max: 3,
+          quantity: 0
+        },
+        {
+          id: 4,
+          name: "Salsa Especial",
+          price: 2,
+          max: 3,
+          quantity: 0
+        },
+        {
+          id: 1,
+          name: "Salsa Picante",
+          price: 3,
+          max: 3,
+          quantity: 0
+        }
+      ]
     }
   }
 }

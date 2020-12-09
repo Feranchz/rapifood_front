@@ -2,9 +2,52 @@ import Image from "next/image"
 import { useCart } from "../Contexts/ShoppingCart/context"
 import { useShoppingCart } from "../Utils/useShoppingCart"
 import { ItemsList } from "./ItemsList"
+import { useRouter } from "next/router"
+import { useRequest } from "../Utils/useRequests"
+import { useContext } from "react"
+import { OrderContext } from "../Contexts/Order/context"
 
 export const ShoppingCart = ({ isOpen, close }) => {
   const { cart, dispatch } = useCart()
+  const { post } = useRequest()
+  const router = useRouter()
+  const { setOrder } = useContext(OrderContext)
+
+  const createOrder = async () => {
+    let products = [];
+
+    cart.products.forEach(product => {
+      let newProduct = {
+        id: product.id,
+        extras: []
+      }
+
+      product.extras.forEach(extra => {
+        if(extra.quantity > 0){
+          newProduct.extras.push({
+            id: extra.id,
+            quantity: extra.quantity
+          })
+        }
+      })
+
+      for(let i = 0; i < product.quantity; i++){
+        products.push(newProduct);
+      }
+    })
+
+    const res = await post("/order", {
+      paymentID: 0,
+      products
+    })
+
+    if(res.status){
+      setOrder(res.data.orderID)
+      close()
+      router.push("/pagar")
+    }
+
+  }
 
   return (
     <>
@@ -50,7 +93,7 @@ export const ShoppingCart = ({ isOpen, close }) => {
             <p className="text-xl font-bold">{cart.total} U$S</p>
           </div>
           <div className="text">
-            <button className="yellow-button my-2 w-full">Crear Orden</button>
+            <button className="yellow-button my-2 w-full" onClick={createOrder}>Crear Orden</button>
           </div>
         </div>
       </aside>

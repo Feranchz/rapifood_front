@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-export const Step = ({ step, title, dropdown = false, checked = false, children }) => {
+export const Step = ({ step, title, dropdown = false, checked = false, children, completed }) => {
   return (
-    <div className="py-3">
+    <div className={`py-3 ${completed ? "opacity-50" : ""}`}>
       <div className={`flex items-center ${checked ? "opacity-50" : ""}`}>
         <div className="w-1/3">
           <p className="text-2xl mx-auto font-bold bg-thyellow py-2 px-5 w-12 h-12 rounded-full">{step}</p>

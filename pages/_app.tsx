@@ -12,6 +12,7 @@ import { ProductModalProvider } from '../components/Contexts/ProductModal/contex
 import { FiltersProvider } from '../components/Contexts/Filters/context'
 import { SnackProvider } from '../components/Snacks/context'
 import { UserProvider } from '../components/Contexts/User/context'
+import { OrderProvider } from "../components/Contexts/Order/context"
 
 function MyApp({ Component, pageProps }: AppProps){
   const [showShoppingCart, setShowShoppingCart] = useState(false)
@@ -33,21 +34,23 @@ function MyApp({ Component, pageProps }: AppProps){
 
   return (
     <SnackProvider>
-      <UserProvider>
-        <ViewportProvider>
-          <FiltersProvider>
-            <CartProvider>
-              <ProductModalProvider>
-                <ShoppingCart isOpen={showShoppingCart} close={() => setShowShoppingCart(false)} />
-                <AuthModal visible={authModal} close={() => setAuthModal(false)} />
-                <Navbar handleShoppingCart={handleShoppingCart} handleAuthModal={handleAuthModal} />
-                <Component {...pageProps} />
-                <Footer />
-              </ProductModalProvider>
-            </CartProvider>
-          </FiltersProvider>
-        </ViewportProvider>
-      </UserProvider>
+      <OrderProvider>
+        <UserProvider>
+          <ViewportProvider>
+            <FiltersProvider>
+              <CartProvider>
+                <ProductModalProvider>
+                  <ShoppingCart isOpen={showShoppingCart} close={() => setShowShoppingCart(false)} />
+                  <AuthModal visible={authModal} close={() => setAuthModal(false)} />
+                  <Navbar handleShoppingCart={handleShoppingCart} handleAuthModal={handleAuthModal} />
+                  <Component {...pageProps} />
+                  <Footer />
+                </ProductModalProvider>
+              </CartProvider>
+            </FiltersProvider>
+          </ViewportProvider>
+        </UserProvider>
+      </OrderProvider>
     </SnackProvider>
   )
 }

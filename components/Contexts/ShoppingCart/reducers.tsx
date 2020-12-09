@@ -4,6 +4,9 @@ export const mainReducer = (state, action) => {
   let deepCopy = JSON.parse(JSON.stringify(state))
 
   switch(action.type){
+    case "RESET":
+      newProducts = []
+    break;
     case "ADD_PRODUCT":
       newProducts = [
         ...deepCopy.products,

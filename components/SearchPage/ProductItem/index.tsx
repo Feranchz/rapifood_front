@@ -5,36 +5,36 @@ import { useProductModal } from '../../Contexts/ProductModal/context'
 export const EXTRAS = [
   {
     id: 1,
-    name: "Extra #1",
-    price: 0.99,
+    name: "Refresco Coca Cola 2LT",
+    price: 1,
     max: 3,
     quantity: 0
   },
   {
     id: 2,
-    name: "Extra #1",
-    price: 0.99,
+    name: "Refresco Pepsi 2LT",
+    price: 1,
     max: 3,
     quantity: 0
   },
   {
     id: 3,
-    name: "Extra #1",
-    price: 0.99,
+    name: "Papitas",
+    price: 1.5,
     max: 3,
     quantity: 0
   },
   {
     id: 4,
-    name: "Extra #1",
-    price: 0.99,
+    name: "Salsa Especial",
+    price: 2,
     max: 3,
     quantity: 0
   },
   {
     id: 1,
-    name: "Extra #1",
-    price: 0.99,
+    name: "Salsa Picante",
+    price: 3,
     max: 3,
     quantity: 0
   }
