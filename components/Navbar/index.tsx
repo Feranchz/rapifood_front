@@ -38,7 +38,7 @@ export const Navbar = ({handleShoppingCart, handleAuthModal}) => {
           </div>
           <div className="flex-1 justify-center hidden lg:flex">
             <div className="relative text-sm bg-accents-1 w-full transition-colors duration-150">
-              <input className="input-principal" placeholder="Buscar comida..." />
+              
             </div>
           </div>
           <div className="flex flex-1 justify-end space-x-8">
