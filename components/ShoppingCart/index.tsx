@@ -38,7 +38,10 @@ export const ShoppingCart = ({ isOpen, close }) => {
 
     const res = await post("/order", {
       paymentID: 0,
-      products
+      products,
+      addressShipping: "Av. Sanz",
+      nameShipping: "Fernando Chavez",
+      phoneShipping: "12345678"
     })
 
     if(res.status){
