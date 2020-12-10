@@ -42,7 +42,7 @@ export const EXTRAS = [
 
 const IMAGE_BASE = "http://rapifood-backend.tk:8001"
 
-export const ProductItem = ({id, image_url, name, restaurant, price, extras, link, discount = 0, description}) => {
+export const ProductItem = ({id, image_url, name, restaurant_name, price, extras, link, discount = 0, description}) => {
   const { setProductModal } = useProductModal()
 
   const addProduct = (e) => {
@@ -50,7 +50,7 @@ export const ProductItem = ({id, image_url, name, restaurant, price, extras, lin
     setProductModal({
       id,
       name,
-      restaurant,
+      restaurant_name,
       image: image_url,
       link,
       price,
@@ -69,7 +69,7 @@ export const ProductItem = ({id, image_url, name, restaurant, price, extras, lin
         <div className="p-2">
           <div className="h-28">
             <p className="font-bold text-xl">{name}</p>
-            <p>de {restaurant}</p>
+            <p>de {restaurant_name}</p>
             <p className="text-sm">¡Combinalo con hasta {EXTRAS.length} extras!</p>
           </div>
           <div>
