@@ -31,14 +31,8 @@ export const Menu = ({closeMenu}) => {
   return (
     <div ref={wrapper} className="bg-white fixed right-20 py-3 rounded-lg shadow-md border mt-10">
       <nav>
-        <Link href="/cuenta">
-          <a className="block py-2 px-10 cursor-pointer hover:bg-thyellow">Mi Cuenta</a>
-        </Link>
         <Link href="/cuenta/pedidos">
           <a className="block py-2 px-10 cursor-pointer hover:bg-thyellow">Pedidos</a>
-        </Link>
-        <Link href="/cuenta/tarjetas">
-          <a className="block py-2 px-10 cursor-pointer hover:bg-thyellow">Tarjetas</a>
         </Link>
         {
           user.roleID == 1 ?

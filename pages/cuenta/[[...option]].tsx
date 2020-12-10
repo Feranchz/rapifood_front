@@ -195,16 +195,8 @@ const Account = ({ tab }) => {
 
   const OPTIONS = [
     {
-      key: "cuenta",
-      name: "Cuenta"
-    },
-    {
       key: "pedidos",
       name: "Pedidos"
-    },
-    {
-      key: "tarjetas",
-      name: "Tarjetas"
     }
   ]
 
@@ -220,7 +212,7 @@ const Account = ({ tab }) => {
           <div className="w-2/3 md:px-4">
             <h2 className="font-bold text-xl">{user.name} {user.lastname}</h2>
             <p>{user.email}</p>
-            <p className="text-sm">Miembro desde hace 2 meses</p>
+            <p className="text-sm">Miembro desde hoy</p>
           </div>
           <div className="w-full md:hidden">
             <Tabs options={OPTIONS} active={activeTab} changeTab={setActiveTab} />
