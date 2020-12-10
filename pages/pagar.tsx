@@ -133,7 +133,7 @@ const Pay = () => {
       noErrors = false
     }
 
-    if(values.code.length != 3){
+    if(values.code.length < 3){
       errors.code = true
       noErrors = false
     }
@@ -264,7 +264,7 @@ const Pay = () => {
                     </div>
                     <div className="flex flex-wrap py-2 text-sm">
                       <label className="w-full ml-2">Código de seguridad</label>
-                      <input name="code" maxLength={3} type="text" className={`input-simple h-10 ${cardErrors.code ? "border border-red-300" : ""}`} />
+                      <input name="code" maxLength={4} type="text" className={`input-simple h-10 ${cardErrors.code ? "border border-red-300" : ""}`} />
                     </div>
                     <div className="flex">
                       <button className="button-with-gradient w-1/2 mx-2 py-1 rounded-lg mt-2" onClick={() => setActualStep(3)}>Regresar</button>
